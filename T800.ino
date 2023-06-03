@@ -15,6 +15,8 @@ Servo myservo;  // create servo object to control a servo
 int pos = 90;    // variable to store the servo position
 int A=50;
 int B=10;
+int ledPin1=2;
+int Val1;
 
 void setup() {
   Serial.begin(9600);
@@ -24,10 +26,18 @@ void setup() {
 }
 
 void loop() {
+for (Val1 = 0; Val1 <= 255; Val1 += 1) 
+  {
+    analogWrite(ledPin1,Val1);
+    Serial.println("ojos:");
+    Serial.println(Val1);
+    delay(15);
+  }  
 
   for (pos = 90; pos <= 135; pos += 1) { // goes from 90 degrees to 135 degrees
     // in steps of 1 degree
     myservo.write(pos);  
+    Serial.println("posicion:");
     Serial.println(pos);            // tell servo to go to position in variable 'pos'
     delay(A);                       // waits 15 ms for the servo to reach the position
   }
@@ -42,6 +52,14 @@ void loop() {
     Serial.println(pos);              // tell servo to go to position in variable 'pos'
     delay(A);                       // waits 15 ms for the servo to reach the position
   }
-  delay(10000);
+  for (Val1 = 255; Val1 >= 0; Val1 -= 1) 
+  {
+    analogWrite(ledPin1,Val1);
+    Serial.println("ojos:");
+    Serial.println(Val1);
+    delay(15);
+  }  
+
+  delay(100000);
   
 }
